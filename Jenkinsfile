@@ -1,6 +1,6 @@
 node('jenkins-slave') {
 	try {
-	
+	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
 		def project = "total"
 		def appName = "atlas-app"
@@ -20,7 +20,7 @@ node('jenkins-slave') {
 		}
 
 		stage('Build') {
-			container('jenkins-slave'){
+			
 			echo 'Start Build...1'
 			
 			//sleep 60
@@ -31,7 +31,7 @@ node('jenkins-slave') {
 			sh "id -g jenkins"
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
-			}
+			
 		}
 
 		//stage('Unit Test') {
@@ -96,6 +96,7 @@ node('jenkins-slave') {
      		
      				
    		} 
+	}
 	} catch (e) {
        		// If there was an exception thrown, the build failed
 	    	currentBuild.result = "FAILED"
