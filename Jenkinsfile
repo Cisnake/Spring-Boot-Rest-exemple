@@ -23,8 +23,9 @@ node('jenkins-slave') {
 			container('jenkins-slave'){
 			echo 'Start Build...1'
 			
-			sleep 60
+			//sleep 60
 			sh "ls -l ${mvnHome}/bin"
+			sh "ls -l /tools/maven_repository"
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
 			}
