@@ -1,4 +1,4 @@
-node('jenkins-slave') {
+node('jnlp') {
 	try {
 	
 		def mvnHome = tool 'maven3'
@@ -22,7 +22,7 @@ node('jenkins-slave') {
 		stage('Build') {
 			echo 'Start Build...'
 			
-			sleep 300
+			sleep 60
 			sh "ls -l ${mvnHome}/bin"
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
