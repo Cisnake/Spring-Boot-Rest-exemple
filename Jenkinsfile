@@ -50,9 +50,9 @@ node('jenkins-slave') {
 		//}
 
 		stage('Build Docker Image') {
-			sh "docker"
+			sh "docker build -t ${imageTag} ."
 
-			app = docker.build("${imageTag}")
+			//app = docker.build("${imageTag}")
 		}
 
 		//stage('Test image') {
