@@ -24,12 +24,8 @@ node('jenkins-slave') {
 			echo 'Start Build...1'
 			
 			//sleep 60
-			sh "ls -l ${mvnHome}/bin"
-			sh "ls -l /tools"
-			sh "whoami"
-			sh "id -u jenkins"
-			sh "id -g jenkins"
-			sh "${mvnHome}/bin/mvn clean install -DskipTests"
+			
+			sh "${mvnHome}/bin/mvn install -DskipTests"
 			echo 'END Build......'
 			
 		}
@@ -54,6 +50,8 @@ node('jenkins-slave') {
 		//}
 
 		stage('Build Docker Image') {
+			sh "docker"
+
 			app = docker.build("${imageTag}")
 		}
 
