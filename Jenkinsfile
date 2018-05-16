@@ -21,6 +21,7 @@ node('jenkins-slave') {
 
 		stage('Build') {
 			echo 'Start Build...'
+			sleep 300
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
 		}
