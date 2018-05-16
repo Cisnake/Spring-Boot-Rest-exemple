@@ -20,12 +20,14 @@ node('jenkins-slave') {
 		}
 
 		stage('Build') {
+			container('jenkins-slave'){
 			echo 'Start Build...1'
 			
 			sleep 60
 			sh "ls -l ${mvnHome}/bin"
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
+			}
 		}
 
 		//stage('Unit Test') {
