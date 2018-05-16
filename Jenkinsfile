@@ -26,6 +26,9 @@ node('jenkins-slave') {
 			//sleep 60
 			sh "ls -l ${mvnHome}/bin"
 			sh "ls -l /tools"
+			sh "whoami"
+			sh "id -u jenkins"
+			sh "id -g jenkins"
 			sh "${mvnHome}/bin/mvn clean install -DskipTests"
 			echo 'END Build......'
 			}
