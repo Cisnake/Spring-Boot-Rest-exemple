@@ -1,4 +1,4 @@
-node('jenkins-slave') {
+node('jnlp') {
 	try {
 	
 		def mvnHome = tool 'maven3'
