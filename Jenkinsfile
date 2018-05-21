@@ -6,7 +6,22 @@ node('jenkins-slave') {
 		def appName = "atlas-app"
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
  		echo 'debut ...'
-
+		
+		stage('Push image') {
+			sh 'docker images'
+			
+			/* Finally, we'll push the image with two tags:
+         		 * First, the incremental build number from Jenkins
+         		 * Second, the 'latest' tag.
+         		 * Pushing multiple tags is cheap, as all the layers are reused. */
+        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            			//app.push("${env.BUILD_NUMBER}")
+    				//app.push("latest")
+				sh 'docker push ${imageTag}'
+        		}
+    		} 
+		
+		
 		stage('Checkout') {
 			echo 'Pulling... ' + env.BRANCH_NAME
 			checkout scm
