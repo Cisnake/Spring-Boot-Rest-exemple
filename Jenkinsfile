@@ -2,7 +2,7 @@ node('jenkins-slave') {
 	try {
 	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
-		def project = "total"
+		def project = "poccrmacr.azurecr.io"
 		def appName = "atlas-app"
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
  		echo 'debut ...'
@@ -54,6 +54,18 @@ node('jenkins-slave') {
 
 			//app = docker.build("${imageTag}")
 		}
+		
+		stage('Push image') {
+			/* Finally, we'll push the image with two tags:
+         		 * First, the incremental build number from Jenkins
+         		 * Second, the 'latest' tag.
+         		 * Pushing multiple tags is cheap, as all the layers are reused. */
+        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            			//app.push("${env.BUILD_NUMBER}")
+    				//app.push("latest")
+				sh 'docker push ${imageTag}'
+        		}
+    		} 
 
 		//stage('Test image') {
 		//	/* Ideally, we would run a test framework against our image.
