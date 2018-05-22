@@ -7,22 +7,22 @@ node('jenkins-slave') {
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
  		echo 'debut ...'
 		
-		stage('Push image') {
-			sh 'docker images'
-			sh 'docker pull hello-world'
-			sh 'docker tag hello-world:latest poccrmacr.azurecr.io/hello:1.0'
-			// sh 'docker push poccrmacr.azurecr.io/hello:1.0'
-			
-			/* Finally, we'll push the image with two tags:
-         		 * First, the incremental build number from Jenkins
-         		 * Second, the 'latest' tag.
-         		 * Pushing multiple tags is cheap, as all the layers are reused. */
-        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            			//app.push("${env.BUILD_NUMBER}")
-    				//app.push("latest")
-				sh 'docker push poccrmacr.azurecr.io/hello:1.0'
-        		}
-    		} 
+		//stage('Push image') {
+		//	sh 'docker images'
+		//	sh 'docker pull hello-world'
+		//	sh 'docker tag hello-world:latest poccrmacr.azurecr.io/hello:1.0'
+		//	// sh 'docker push poccrmacr.azurecr.io/hello:1.0'
+		//	
+		//	/* Finally, we'll push the image with two tags:
+         	//	 * First, the incremental build number from Jenkins
+         	//	 * Second, the 'latest' tag.
+         	//	 * Pushing multiple tags is cheap, as all the layers are reused. */
+        	//	docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            	//		//app.push("${env.BUILD_NUMBER}")
+    		//		//app.push("latest")
+		//		sh 'docker push poccrmacr.azurecr.io/hello:1.0'
+        	//	}
+    		//} 
 		
 		
 		stage('Checkout') {
