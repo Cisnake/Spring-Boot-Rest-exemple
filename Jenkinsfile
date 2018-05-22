@@ -54,7 +54,7 @@ node('jenkins-slave') {
 
 		stage('SonarQube analysis') {
 			withSonarQubeEnv('sonar') {
-			sh "${mvnHome}/bin/mvn sonar:sonar" // -Dsonar.projectName=xxx"
+			sh "${mvnHome}/bin/mvn sonar:sonar" -Dsonar.projectName=xxx"
 			}
 		}
 
