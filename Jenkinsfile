@@ -9,6 +9,9 @@ node('jenkins-slave') {
 		
 		stage('Push image') {
 			sh 'docker images'
+			sh 'docker pull hello-world'
+			sh 'docker tag hello-world:latest poccrmacr.azurecr.io/hello:1.0'
+			sh 'docker push poccrmacr.azurecr.io/hello:1.0'
 			
 			/* Finally, we'll push the image with two tags:
          		 * First, the incremental build number from Jenkins
