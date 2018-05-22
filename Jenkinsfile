@@ -11,7 +11,7 @@ node('jenkins-slave') {
 			sh 'docker images'
 			sh 'docker pull hello-world'
 			sh 'docker tag hello-world:latest poccrmacr.azurecr.io/hello:1.0'
-			sh 'docker push poccrmacr.azurecr.io/hello:1.0'
+			// sh 'docker push poccrmacr.azurecr.io/hello:1.0'
 			
 			/* Finally, we'll push the image with two tags:
          		 * First, the incremental build number from Jenkins
@@ -20,7 +20,7 @@ node('jenkins-slave') {
         		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
-				sh 'docker push ${imageTag}'
+				sh 'docker push poccrmacr.azurecr.io/hello:1.0'
         		}
     		} 
 		
