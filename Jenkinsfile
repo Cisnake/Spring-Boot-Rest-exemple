@@ -17,7 +17,7 @@ node('jenkins-slave') {
          		 * First, the incremental build number from Jenkins
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
-        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        		docker.withRegistry('poccrmacr.azurecr.io', 'docker-hub-credentials') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
 				sh 'docker push  poccrmacr.azurecr.io/hello:${env.BUILD_NUMBER}'
