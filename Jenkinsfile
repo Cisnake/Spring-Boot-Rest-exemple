@@ -11,7 +11,7 @@ node('jenkins-slave') {
 			sh 'docker images | grep hello'
 			sh 'docker pull hello-world'
 			sh ("docker tag hello-world:latest ${imageTag} ")
-        		docker.withRegistry('poccrmacr.azurecr.io', 'AzureAcrCredentiel') {
+        		docker.withRegistry('http://poccrmacr.azurecr.io', 'AzureAcrCredentiel') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
 				sh ("docker push  ${imageTag}")
