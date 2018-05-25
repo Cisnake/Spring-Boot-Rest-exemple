@@ -12,7 +12,7 @@ node('jenkins-slave') {
 			//sh 'docker pull hello-world'
 			sh 'kubectl get pods --all-namespaces'
 			sh ("docker tag hello-world:latest ${imageTag} ")
-        		docker.withRegistry('http://poccrmacr.azurecr.io', 'AzureAcrCredentiel') {
+        		docker.withRegistry('http://poccrmacr.azurecr.io', 'docker-hub-credentials') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
 				sh ("docker push  ${imageTag}")
