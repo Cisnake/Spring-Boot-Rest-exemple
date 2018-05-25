@@ -3,8 +3,9 @@ node('jenkins-slave') {
 	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
 		def project = "poccrmacr.azurecr.io"
-		def appName = "atlas-app"
+		def appName = "atlas-cisnake"
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
+		def sonarProjectName "Spring-Boot-Rest-exemple.${env.BRANCH_NAME}"
  		echo 'debut ...'
 		
 		//stage('Push image') {
@@ -29,7 +30,7 @@ node('jenkins-slave') {
 			echo 'Pulling... ' + env.BRANCH_NAME
 			checkout scm
 			echo 'END Pulling SCM'
-			 pom = readMavenPom file: 'pom.xml'
+			pom = readMavenPom file: 'pom.xml'
 
 			//def project1 = new XmlSlurper().parseText(readFile('pom.xml'))
 			echo 'END Pulling SCM 1' 
@@ -54,7 +55,7 @@ node('jenkins-slave') {
 
 		stage('SonarQube analysis') {
 			withSonarQubeEnv('sonar') {
-			sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=xxx"
+				sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=${sonarProjectName}"
 			}
 		}
 
@@ -73,17 +74,17 @@ node('jenkins-slave') {
 			//app = docker.build("${imageTag}")
 		}
 		
-		stage('Push image') {
+		//stage('Push image') {
 			/* Finally, we'll push the image with two tags:
          		 * First, the incremental build number from Jenkins
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
-        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        	//	docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
-				sh 'docker push ${imageTag}'
-        		}
-    		} 
+		//		sh 'docker push ${imageTag}'
+        	//	}
+    		//} 
 
 		//stage('Test image') {
 		//	/* Ideally, we would run a test framework against our image.
