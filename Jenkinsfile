@@ -53,11 +53,11 @@ node('jenkins-slave') {
 		//	sh "${mvnHome}/bin/mvn test"
 		//}
 
-		stage('SonarQube analysis') {
-			withSonarQubeEnv('sonar') {
-				sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=${sonarProjectName}"
-			}
-		}
+		//stage('SonarQube analysis') {
+		//	withSonarQubeEnv('sonar') {
+		//		sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=${sonarProjectName}"
+		//	}
+		//}
 
 		//stage('Quality Gate'){
 		//	timeout(time: 30, unit: 'MINUTES') {
