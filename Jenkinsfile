@@ -5,7 +5,7 @@ node('jenkins-slave') {
 		def project = "poccrmacr.azurecr.io"
 		def appName = "atlas-cisnake"
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
-		def sonarProjectName "Spring-Boot-Rest-exemple.${env.BRANCH_NAME}"
+		def sonarProjectName = "Spring-Boot-Rest-exemple.${env.BRANCH_NAME}"
  		echo 'debut ...'
 		
 		//stage('Push image') {
