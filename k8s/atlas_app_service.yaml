@@ -6,7 +6,7 @@ metadata:
   labels:
     name: atlas-ms
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 8090
       targetPort: 8090
