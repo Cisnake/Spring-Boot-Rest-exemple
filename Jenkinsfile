@@ -10,7 +10,7 @@ node('jenkins-slave') {
 		stage('Push image') {
 			sh 'docker images | grep hello'
 			//sh 'docker pull hello-world'
-			sh 'kubectl get pods --all-namespaces'
+			sh 'kubectl get pods -n crmcontract'
 			sh ("docker tag hello-world:latest ${imageTag} ")
         		docker.withRegistry('http://poccrmacr.azurecr.io', 'docker-hub-credentials') {
             			//app.push("${env.BUILD_NUMBER}")
