@@ -1,6 +1,7 @@
-node('jenkins-slave') {
+//node('jenkins-slave') {
+node {
 	try {
-	container('jenkins-slave'){
+//	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
 		def project = "poccrmacr.azurecr.io"
 		def appName = "atlas-cisnake"
@@ -125,7 +126,7 @@ node('jenkins-slave') {
      		
      				
    		} 
-	}
+//	}
 	} catch (e) {
        		// If there was an exception thrown, the build failed
 	    	currentBuild.result = "FAILED"
