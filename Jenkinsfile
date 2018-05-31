@@ -126,7 +126,7 @@ node {
      		
      				
    		} 
-//	}
+	}
 	} catch (e) {
        		// If there was an exception thrown, the build failed
 	    	currentBuild.result = "FAILED"
