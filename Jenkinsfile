@@ -124,7 +124,7 @@ node {
 				sh("kubectl apply -n ${namespace} -f ./k8s")
      			}		
    		} 
-	}
+	//}
 	}
 	} catch (e) {
        		// If there was an exception thrown, the build failed
