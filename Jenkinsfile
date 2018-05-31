@@ -1,5 +1,4 @@
-//node('jenkins-slave') {
-node {
+node('jenkins-slave') {
 	try {
 	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
