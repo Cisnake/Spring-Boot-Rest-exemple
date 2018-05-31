@@ -82,7 +82,7 @@ node('jenkins-slave') {
         		docker.withRegistry('https://registry.hub.docker.com', 'cisnakeDockerHubId') {
             			//app.push("${env.BUILD_NUMBER}")
     				//app.push("latest")
-				sh 'docker push ${imageTag}'
+				sh "docker push ${imageTag}"
         		}
     		} 
 
