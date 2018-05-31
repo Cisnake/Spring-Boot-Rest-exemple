@@ -1,7 +1,7 @@
 //node('jenkins-slave') {
 node {
 	try {
-//	container('jenkins-slave'){
+	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
 		def project = "poccrmacr.azurecr.io"
 		def appName = "atlas-cisnake"
