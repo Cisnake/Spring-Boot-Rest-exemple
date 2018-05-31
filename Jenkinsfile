@@ -2,8 +2,8 @@ node('jenkins-slave') {
 	try {
 	container('jenkins-slave'){
 		def mvnHome = tool 'maven3'
-		def project = "poccrmacr.azurecr.io"
-		def appName = "atlas-cisnake"
+		def project = "cisnake"
+		def appName = "atlas-ms1"
  		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
 		def sonarProjectName = "Spring-Boot-Rest-exemple.${env.BRANCH_NAME}"
  		echo 'debut ...'
