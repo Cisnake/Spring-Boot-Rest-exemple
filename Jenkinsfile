@@ -81,10 +81,10 @@ node('jenkins-slave') {
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
 	            withCredentials(
-			[usernamePassword( credentialsId: 'docker-hub-credentials',
+			[usernamePassword( credentialsId: 'cisnakeDockerHubId',
 					  usernameVariable: 'cisnake', passwordVariable: 'SoliduS9$')]) {
 
-        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        		docker.withRegistry('https://registry.hub.docker.com', 'cisnakeDockerHubId') {
             			//app = docker.build("${imageTag}")
 				//app.push()
     				//app.push("latest")
