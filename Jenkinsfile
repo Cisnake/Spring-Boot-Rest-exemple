@@ -80,12 +80,17 @@ node('jenkins-slave') {
          		 * First, the incremental build number from Jenkins
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
-        		docker.withRegistry('https://registry.hub.docker.com', 'cisnakeDockerHubId') {
+	            withCredentials(
+			[usernamePassword( credentialsId: 'docker-hub-credentials',
+					  usernameVariable: 'cisnake', passwordVariable: 'SoliduS9$')]) {
+
+        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             			//app = docker.build("${imageTag}")
 				//app.push()
     				//app.push("latest")
 				sh "docker push ${imageTag}"
         		}
+		    }
     		} 
 
 		//stage('Test image') {
