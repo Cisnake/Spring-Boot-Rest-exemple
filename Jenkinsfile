@@ -43,7 +43,7 @@ node('jenkins-slave') {
 			
 			echo 'Start Build...1'
 			
-			sleep 600
+			// sleep 600
 			
 			sh "${mvnHome}/bin/mvn install -DskipTests"
 			echo 'END Build......'
