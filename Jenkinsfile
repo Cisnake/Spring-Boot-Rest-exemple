@@ -84,7 +84,7 @@ node('jenkins-slave') {
 			//[usernamePassword( credentialsId: 'cisnakeDockerHubId',
 			//		  usernameVariable: 'cisnake', passwordVariable: 'SoliduS9$')]) {
 
-        		docker.withRegistry('https://hub.docker.com', 'cisnakeDockerHubId') {
+        		docker.withRegistry('docker.io', 'cisnakeDockerHubId') {
             			//app = docker.build("${imageTag}")
 				//app.push()
     				//app.push("latest")
