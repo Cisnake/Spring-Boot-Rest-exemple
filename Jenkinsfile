@@ -70,9 +70,9 @@ node('jenkins-slave') {
 		//}
 
 		stage('Build Docker Image') {
-			//sh "docker build -t ${imageTag} ."
+			sh "docker build -t ${imageTag} ."
 
-			app = docker.build("${imageTag}")
+			//app = docker.build("${imageTag}")
 		}
 		
 		stage('Push image') {
@@ -81,7 +81,8 @@ node('jenkins-slave') {
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
         		docker.withRegistry('https://registry.hub.docker.com', 'cisnakeDockerHubId') {
-            			app.push()
+            			app = docker.build("${imageTag}")
+				app.push()
     				//app.push("latest")
 				//sh "docker push ${imageTag}"
         		}
