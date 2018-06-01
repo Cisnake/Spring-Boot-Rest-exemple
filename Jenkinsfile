@@ -4,7 +4,8 @@ node('jenkins-slave') {
 		def mvnHome = tool 'maven3'
 		def project = "cisnake"
 		def appName = "atlas-ms1"
- 		def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
+ 		// def imageTag = "${project}/${appName}:${env.BRANCH_NAME}"
+		def imageTag = "${project}/${appName}:${env.BUILD_NUMBER}"
 		def sonarProjectName = "Spring-Boot-Rest-exemple.${env.BRANCH_NAME}"
  		echo 'debut ...'
 		
@@ -69,9 +70,9 @@ node('jenkins-slave') {
 		//}
 
 		stage('Build Docker Image') {
-			sh "docker build -t ${imageTag} ."
+			//sh "docker build -t ${imageTag} ."
 
-			//app = docker.build("${imageTag}")
+			app = docker.build("${imageTag}")
 		}
 		
 		stage('Push image') {
@@ -80,9 +81,9 @@ node('jenkins-slave') {
          		 * Second, the 'latest' tag.
          		 * Pushing multiple tags is cheap, as all the layers are reused. */
         		docker.withRegistry('https://registry.hub.docker.com', 'cisnakeDockerHubId') {
-            			//app.push("${env.BUILD_NUMBER}")
+            			app.push()
     				//app.push("latest")
-				sh "docker push ${imageTag}"
+				//sh "docker push ${imageTag}"
         		}
     		} 
 
